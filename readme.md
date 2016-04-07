@@ -21,17 +21,17 @@ speedcurve.getSites().then(json => {
 
 ## API
 
-### `getSites()`
+### [`getSites()`](https://api.speedcurve.com/#get-all-sites)
 
-### `getUrls(urlId, browser, days)`
+### [`getUrls(urlId, browser, days)`](https://api.speedcurve.com/#get-all-tests-for-a-url)
 
-### `getTest(testId)`
+### [`getTest(testId)`](https://api.speedcurve.com/#get-a-test)
 
-### `getNotes()`
+### [`getNotes()`](https://api.speedcurve.com/#get-all-notes)
 
-### `getLatestDeploy()`
+### [`getLatestDeploy()`](https://api.speedcurve.com/#lastest-deployment)
 
-### `getDeploy(deployId)`
+### [`getDeploy(deployId)`](https://api.speedcurve.com/#get-a-deployment)
 
 ## License
 
