@@ -10,10 +10,11 @@ module.exports = class SpeedCurve {
    * @param {String} apiKey
    */
   constructor(apiKey) {
+    let authorization = new Buffer(`${apiKey}:x`).toString('base64');
     this.options = {
       json    : true,
       headers : {
-        'authorization': 'Basic ' + (new Buffer(`${apiKey}:x`).toString('base64')),
+        'authorization': `Basic ${authorization}`,
         'accept-encoding': 'gzip,deflate'
       }
     };
@@ -22,28 +23,34 @@ module.exports = class SpeedCurve {
   /**
    * Retrieves all sites and monitored URL’s for an account/team and the median tests for a site across all templates/URL’s and regions.
    * @description GET https://api.speedcurve.com/v1/sites
+   * @param {String} format: Switch JSON structure to support a graph on Panic’s Statusboard. Options: (speedcurve, statusboard).
+   * @param {Number} days: Number of days of median tests to return. (Max: 365)
    * @returns {Promise}
    */
-  getSites() {
+  getSites(format, days) {
+    let queries = querystring.stringify({
+      format : format || 'speedcurve',
+      days   : days   || 14
+    });
     let options = Object.assign({}, this.options);
-    return request.get(`${API_ENDPOINT}/sites`, options);
+    return request.get(`${API_ENDPOINT}/sites${queries}`, options);
   }
 
   /**
    * Retrieves all the metadata for tests of a specific monitored URL.
    * @description GET https://api.speedcurve.com/v1/urls/{id}?days=30&browser=ie
    * @param {Number} urlId
-   * @param {String} browser
-   * @param {Number} days
+   * @param {String} browser: Browser. Options: (all, chrome, ie, firefox, safari).
+   * @param {Number} days: Number of days of tests (Max: 365).
    * @returns {Promise}
    */
   getUrls(urlId, browser, days) {
+    let queries = querystring.stringify({
+      browser : browser || 'chrome',
+      days    : days    || 14
+    });
     let options = Object.assign({}, this.options);
-    let queries = {
-      browser : browser,
-      days    : days
-    };
-    return request.get(`${API_ENDPOINT}/urls/${urlId}${querystring.stringify(queries)}`, options);
+    return request.get(`${API_ENDPOINT}/urls/${urlId}${queries}`, options);
   }
 
   /**

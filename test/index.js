@@ -19,8 +19,10 @@ test('SpeedCurve()', t => {
   t.is(typeof speedcurve.getDeploy, 'function');
 });
 
-test('getSites()', async t => {
-  let response = await speedcurve.getSites();
+test('getSites(format, days)', async t => {
+  let format = 'speedcurve';
+  let days = 14;
+  let response = await speedcurve.getSites(format, days);
   t.truthy(response.body);
 });
 
