@@ -5,16 +5,18 @@
   "scripts": {
     "test": "ava"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/1000ch/node-speedcurve.git"
-  },
+  "repository": "1000ch/node-speedcurve",
   "author": "1000ch",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/1000ch/node-speedcurve/issues"
   },
   "homepage": "https://github.com/1000ch/node-speedcurve#readme",
+  "keywords": [
+    "speedcurve",
+    "performance",
+    "api"
+  ],
   "dependencies": {
     "got": "^6.3.0"
   },
