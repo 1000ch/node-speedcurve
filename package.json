@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "SpeedCurve API thin wrapper",
   "scripts": {
-    "test": "ava"
+    "lint": "eslint index.js",
+    "test": "npm run lint && ava"
   },
   "repository": "1000ch/node-speedcurve",
   "author": "1000ch",
@@ -21,6 +22,11 @@
     "got": "^6.3.0"
   },
   "devDependencies": {
-    "ava": "*"
+    "@1000ch/eslint-config": "^0.5.1",
+    "ava": "*",
+    "eslint": "^2.7.0"
+  },
+  "eslintConfig": {
+    "extends": "@1000ch"
   }
 }
