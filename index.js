@@ -33,7 +33,7 @@ module.exports = class SpeedCurve {
       days   : days || 14
     });
     let options = Object.assign({}, this.options);
-    return request.get(`${API_ENDPOINT}/sites${queries}`, options);
+    return request.get(`${API_ENDPOINT}/sites?${queries}`, options);
   }
 
   /**
@@ -50,7 +50,7 @@ module.exports = class SpeedCurve {
       days    : days || 14
     });
     let options = Object.assign({}, this.options);
-    return request.get(`${API_ENDPOINT}/urls/${urlId}${queries}`, options);
+    return request.get(`${API_ENDPOINT}/urls/${urlId}?${queries}`, options);
   }
 
   /**
