@@ -3,7 +3,9 @@
 const test = require('ava');
 const SpeedCurve = require('..');
 const SPEEDCURVE_APIKEY = process.env.SPEEDCURVE_APIKEY;
-
+const SPEEDCURVE_URL_ID = process.env.SPEEDCURVE_URL_ID;
+const SPEEDCURVE_TEST_ID = process.env.SPEEDCURVE_TEST_ID;
+const SPEEDCURVE_DEPLOY_ID = process.enf.SPEEDCURVE_DEPLOY_ID;
 let speedcurve;
 
 test.beforeEach(t => {
@@ -27,7 +29,7 @@ test('getSites(format, days)', async t => {
 });
 
 test('getUrls(urlId, browser, days)', async t => {
-  let urlId = 8601;
+  let urlId = SPEEDCURVE_URL_ID;
   let browser = 'chrome';
   let days = 30;
   let response = await speedcurve.getUrls(urlId, browser, days);
@@ -35,7 +37,7 @@ test('getUrls(urlId, browser, days)', async t => {
 });
 
 test('getTest(testId)', async t => {
-  let testId = '160406_TT_5c9c44ad9fd706d918e5ba47eb03b687';
+  let testId = SPEEDCURVE_TEST_ID;
   let response = await speedcurve.getTest(testId);
   t.truthy(response.body);
 });
@@ -51,7 +53,7 @@ test('getLatestDeploy()', async t => {
 });
 
 test('getDeploy(deployId)', async t => {
-  let deployId = 37732;
+  let deployId = SPEEDCURVE_DEPLOY_ID;
   let response = await speedcurve.getDeploy(deployId);
   t.truthy(response.body);
 });
