@@ -3,7 +3,7 @@
 [SpeedCurve](https://speedcurve.com/) API thin wrapper.
 
 [![Build Status](https://travis-ci.org/1000ch/node-speedcurve.svg?branch=master)](https://travis-ci.org/1000ch/node-speedcurve)
-[![NPM version](https://badge.fury.io/js/node-speedcurve.svg)](http://badge.fury.io/js/node-speedcurve)
+[![NPM version](https://badge.fury.io/js/speedcurve.svg)](http://badge.fury.io/js/speedcurve)
 [![Dependency Status](https://david-dm.org/1000ch/node-speedcurve.svg)](https://david-dm.org/1000ch/node-speedcurve)
 [![devDependency Status](https://david-dm.org/1000ch/node-speedcurve/dev-status.svg)](https://david-dm.org/1000ch/node-speedcurve#info=devDependencies)
 
