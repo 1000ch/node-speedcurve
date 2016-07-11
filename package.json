@@ -27,6 +27,9 @@
     "eslint": "^3.0.0"
   },
   "eslintConfig": {
-    "extends": "@1000ch"
+    "extends": "@1000ch",
+    "rules": {
+      "camelcase": [0]
+    }
   }
 }

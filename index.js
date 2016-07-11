@@ -75,6 +75,27 @@ module.exports = class SpeedCurve {
   }
 
   /**
+   * Add a note to one of the sites within your account/team.
+   * @description POST https://api.speedcurve.com/v1/notes
+   * @param {String} timestamp: Either a UTC Unix Timestamp or “now”. Options: (now, unix timestamp).
+   * @param {Number} siteId: ID of site to add note to. If no ID provided then note is added to the first site in the account/team.
+   * @param {String} note: Short URL encoded note to display globally across all graphs for the main site. (Max: 255 characters).
+   * @param {String} detail: Optional note detail to display if people want more context.
+   * @returns {Promise} promise
+   */
+  addNote(timestamp = 'now', siteId, note, detail) {
+    let options = Object.assign({}, this.options, {
+      body : {
+        timestamp : timestamp,
+        site_id   : siteId,
+        note      : note,
+        detail    : detail
+      }
+    });
+    return request.post(`${API_ENDPOINT}/notes`, options);
+  }
+
+  /**
    * Gets details and status of testing for the latest deployment.
    * @description GET https://api.speedcurve.com/v1/deploy/latest
    * @returns {Promise} promise
@@ -82,6 +103,25 @@ module.exports = class SpeedCurve {
   getLatestDeploy() {
     let options = Object.assign({}, this.options);
     return request.get(`${API_ENDPOINT}/deploy/latest`, options);
+  }
+
+  /**
+   * Add a deployment and trigger an additional round of testing for one of the sites in your account/team. A note is also automatically added to your graphs.
+   * @description POST https://api.speedcurve.com/v1/deploy
+   * @param {Number} siteId: The ID of the site you’d like to trigger a round of testing on. If no site_id then the deployment is added to the first site in the account/team.
+   * @param {String} note: Short URL encoded note to display globally across all graphs for the main site. (Max: 255 characters).
+   * @param {String} detail: Optional URL encoded note detail to display if people want more context.
+   * @returns {Promise} promise
+   */
+  addDeploy(siteId, note, detail) {
+    let options = Object.assign({}, this.options, {
+      body : {
+        site_id : siteId,
+        note    : note,
+        detail  : detail
+      }
+    });
+    return request.post(`${API_ENDPOINT}/notes`, options);
   }
 
   /**

@@ -17,7 +17,9 @@ test('SpeedCurve()', t => {
   t.is(typeof speedcurve.getUrls, 'function');
   t.is(typeof speedcurve.getTest, 'function');
   t.is(typeof speedcurve.getNotes, 'function');
+  t.is(typeof speedcurve.addNote, 'function');
   t.is(typeof speedcurve.getLatestDeploy, 'function');
+  t.is(typeof speedcurve.addDeploy, 'function');
   t.is(typeof speedcurve.getDeploy, 'function');
 });
 
@@ -47,8 +49,25 @@ test('getNotes()', async t => {
   t.truthy(response.body);
 });
 
+test('addNote(timestamp, siteId, note, detail)', async t => {
+  let timestamp = 'now';
+  let siteId = 123;
+  let note = 'note';
+  let detail = 'detail';
+  let response = await speedcurve.addNote(timestamp, siteId, note, detail);
+  t.truthy(response.body);
+});
+
 test('getLatestDeploy()', async t => {
   let response = await speedcurve.getLatestDeploy();
+  t.truthy(response.body);
+});
+
+test('addDeploy(siteId, note, detail)', async t => {
+  let siteId = 123;
+  let note = 'note';
+  let detail = 'detail';
+  let response = await speedcurve.addDeploy(siteId, note, detail);
   t.truthy(response.body);
 });
 
