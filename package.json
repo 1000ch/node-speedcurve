@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@1000ch/eslint-config": "^2.0.0",
-    "ava": "^0.15.2",
+    "ava": "^0.16.0",
     "eslint": "^3.0.0"
   },
   "eslintConfig": {
