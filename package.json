@@ -22,9 +22,9 @@
     "got": "^6.3.0"
   },
   "devDependencies": {
-    "@1000ch/eslint-config": "^2.0.0",
+    "@1000ch/eslint-config": "^2.1.2",
     "ava": "^0.16.0",
-    "eslint": "^3.0.0"
+    "eslint": "^3.4.0"
   },
   "eslintConfig": {
     "extends": "@1000ch"
