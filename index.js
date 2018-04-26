@@ -121,7 +121,7 @@ module.exports = class SpeedCurve {
         detail  : detail
       }
     });
-    return request.post(`${API_ENDPOINT}/notes`, options);
+    return request.post(`${API_ENDPOINT}/deploys`, options);
   }
 
   /**
