@@ -49,25 +49,8 @@ test('getNotes()', async t => {
   t.truthy(response.body);
 });
 
-test('addNote(timestamp, siteId, note, detail)', async t => {
-  let timestamp = 'now';
-  let siteId = 123;
-  let note = 'note';
-  let detail = 'detail';
-  let response = await speedcurve.addNote(timestamp, siteId, note, detail);
-  t.truthy(response.body);
-});
-
 test('getLatestDeploy()', async t => {
   let response = await speedcurve.getLatestDeploy();
-  t.truthy(response.body);
-});
-
-test('addDeploy(siteId, note, detail)', async t => {
-  let siteId = 123;
-  let note = 'note';
-  let detail = 'detail';
-  let response = await speedcurve.addDeploy(siteId, note, detail);
   t.truthy(response.body);
 });
 
