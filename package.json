@@ -4,7 +4,7 @@
   "description": "SpeedCurve API thin wrapper",
   "scripts": {
     "lint": "eslint index.js",
-    "test": "npm run lint && ava"
+    "test": "xo && ava"
   },
   "repository": "1000ch/node-speedcurve",
   "author": "1000ch",
@@ -22,14 +22,10 @@
     "got": "^6.3.0"
   },
   "devDependencies": {
-    "@1000ch/eslint-config": "^2.0.0",
     "ava": "^0.15.2",
-    "eslint": "^3.0.0"
+    "xo": "^0.20.3"
   },
-  "eslintConfig": {
-    "extends": "@1000ch",
-    "rules": {
-      "camelcase": [0]
-    }
+  "xo": {
+    "space": 2
   }
 }
