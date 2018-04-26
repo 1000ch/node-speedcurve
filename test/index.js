@@ -1,14 +1,15 @@
-'use strict'
+'use strict';
 
 const test = require('ava');
 const SpeedCurve = require('..');
+
 const SPEEDCURVE_APIKEY = process.env.SPEEDCURVE_APIKEY;
 const SPEEDCURVE_URL_ID = process.env.SPEEDCURVE_URL_ID;
 const SPEEDCURVE_TEST_ID = process.env.SPEEDCURVE_TEST_ID;
 const SPEEDCURVE_DEPLOY_ID = process.env.SPEEDCURVE_DEPLOY_ID;
 let speedcurve;
 
-test.beforeEach(t => {
+test.beforeEach(() => {
   speedcurve = new SpeedCurve(SPEEDCURVE_APIKEY);
 });
 
@@ -24,38 +25,38 @@ test('SpeedCurve()', t => {
 });
 
 test('getSites(format, days)', async t => {
-  let format = 'speedcurve';
-  let days = 14;
-  let response = await speedcurve.getSites(format, days);
+  const format = 'speedcurve';
+  const days = 14;
+  const response = await speedcurve.getSites(format, days);
   t.truthy(response.body);
 });
 
 test('getUrls(urlId, browser, days)', async t => {
-  let urlId = SPEEDCURVE_URL_ID;
-  let browser = 'chrome';
-  let days = 30;
-  let response = await speedcurve.getUrls(urlId, browser, days);
+  const urlId = SPEEDCURVE_URL_ID;
+  const browser = 'chrome';
+  const days = 30;
+  const response = await speedcurve.getUrls(urlId, browser, days);
   t.truthy(response.body);
 });
 
 test('getTest(testId)', async t => {
-  let testId = SPEEDCURVE_TEST_ID;
-  let response = await speedcurve.getTest(testId);
+  const testId = SPEEDCURVE_TEST_ID;
+  const response = await speedcurve.getTest(testId);
   t.truthy(response.body);
 });
 
 test('getNotes()', async t => {
-  let response = await speedcurve.getNotes();
+  const response = await speedcurve.getNotes();
   t.truthy(response.body);
 });
 
 test('getLatestDeploy()', async t => {
-  let response = await speedcurve.getLatestDeploy();
+  const response = await speedcurve.getLatestDeploy();
   t.truthy(response.body);
 });
 
 test('getDeploy(deployId)', async t => {
-  let deployId = SPEEDCURVE_DEPLOY_ID;
-  let response = await speedcurve.getDeploy(deployId);
+  const deployId = SPEEDCURVE_DEPLOY_ID;
+  const response = await speedcurve.getDeploy(deployId);
   t.truthy(response.body);
 });

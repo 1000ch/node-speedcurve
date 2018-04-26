@@ -2,6 +2,7 @@
 
 const querystring = require('querystring');
 const request = require('got');
+
 const API_ENDPOINT = 'https://api.speedcurve.com/v1';
 
 module.exports = class SpeedCurve {
@@ -10,12 +11,12 @@ module.exports = class SpeedCurve {
    * @param {String} apiKey: Your API key is available on the Admin > Teams page.
    */
   constructor(apiKey) {
-    let authorization = new Buffer(`${apiKey}:x`).toString('base64');
+    const authorization = Buffer.from(`${apiKey}:x`).toString('base64');
     this.options = {
-      json    : true,
-      headers : {
-        authorization     : `Basic ${authorization}`,
-        'accept-encoding' : 'gzip,deflate'
+      json: true,
+      headers: {
+        authorization: `Basic ${authorization}`,
+        'accept-encoding': 'gzip,deflate'
       }
     };
   }
@@ -28,11 +29,12 @@ module.exports = class SpeedCurve {
    * @returns {Promise} promise
    */
   getSites(format, days) {
-    let queries = querystring.stringify({
-      format : format || 'speedcurve',
-      days   : days || 14
+    const queries = querystring.stringify({
+      format: format || 'speedcurve',
+      days: days || 14
     });
-    let options = Object.assign({}, this.options);
+    const options = Object.assign({}, this.options);
+
     return request.get(`${API_ENDPOINT}/sites?${queries}`, options);
   }
 
@@ -45,11 +47,12 @@ module.exports = class SpeedCurve {
    * @returns {Promise} promise
    */
   getUrls(urlId, browser, days) {
-    let queries = querystring.stringify({
-      browser : browser || 'chrome',
-      days    : days || 14
+    const queries = querystring.stringify({
+      browser: browser || 'chrome',
+      days: days || 14
     });
-    let options = Object.assign({}, this.options);
+    const options = Object.assign({}, this.options);
+
     return request.get(`${API_ENDPOINT}/urls/${urlId}?${queries}`, options);
   }
 
@@ -60,7 +63,8 @@ module.exports = class SpeedCurve {
    * @returns {Promise} promise
    */
   getTest(testId) {
-    let options = Object.assign({}, this.options);
+    const options = Object.assign({}, this.options);
+
     return request.get(`${API_ENDPOINT}/tests/${testId}`, options);
   }
 
@@ -70,7 +74,8 @@ module.exports = class SpeedCurve {
    * @returns {Promise} promise
    */
   getNotes() {
-    let options = Object.assign({}, this.options);
+    const options = Object.assign({}, this.options);
+
     return request.get(`${API_ENDPOINT}/notes`, options);
   }
 
@@ -84,14 +89,16 @@ module.exports = class SpeedCurve {
    * @returns {Promise} promise
    */
   addNote(timestamp = 'now', siteId, note, detail) {
-    let options = Object.assign({}, this.options, {
-      body : {
-        timestamp : timestamp,
-        site_id   : siteId,
-        note      : note,
-        detail    : detail
+    const siteIdKey = 'site_id';
+    const options = Object.assign({}, this.options, {
+      body: {
+        timestamp,
+        [siteIdKey]: siteId,
+        note,
+        detail
       }
     });
+
     return request.post(`${API_ENDPOINT}/notes`, options);
   }
 
@@ -101,7 +108,8 @@ module.exports = class SpeedCurve {
    * @returns {Promise} promise
    */
   getLatestDeploy() {
-    let options = Object.assign({}, this.options);
+    const options = Object.assign({}, this.options);
+
     return request.get(`${API_ENDPOINT}/deploy/latest`, options);
   }
 
@@ -114,13 +122,15 @@ module.exports = class SpeedCurve {
    * @returns {Promise} promise
    */
   addDeploy(siteId, note, detail) {
-    let options = Object.assign({}, this.options, {
-      body : {
-        site_id : siteId,
-        note    : note,
-        detail  : detail
+    const siteIdKey = 'site_id';
+    const options = Object.assign({}, this.options, {
+      body: {
+        [siteIdKey]: siteId,
+        note,
+        detail
       }
     });
+
     return request.post(`${API_ENDPOINT}/deploys`, options);
   }
 
@@ -131,7 +141,8 @@ module.exports = class SpeedCurve {
    * @returns {Promise} promise
    */
   getDeploy(deployId) {
-    let options = Object.assign({}, this.options);
+    const options = Object.assign({}, this.options);
+
     return request.get(`${API_ENDPOINT}/deploy/${deployId}`, options);
   }
 };
